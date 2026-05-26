@@ -106,17 +106,17 @@ function LoginScreen({onLogin}){
     const u=username.trim();
     if(!u)return;
     setLoading(true);setErr("");
-    try{
-      const {data:existing}=await supabase.from("profiles").select("username,is_admin").eq("username",u).single();
+   try{
+      const {data:existing, error:fetchErr}=await supabase.from("profiles").select("username,is_admin").eq("username",u).maybeSingle();
+      if(fetchErr)throw fetchErr;
       if(existing){
         onLogin(existing);
       } else {
-        const {error}=await supabase.from("profiles").insert({username:u,is_admin:false});
-        if(error)throw error;
+        const {error:insertErr}=await supabase.from("profiles").insert({username:u,is_admin:false});
+        if(insertErr)throw insertErr;
         onLogin({username:u,is_admin:false});
       }
-    }catch(e){setErr("Could not connect. Check your internet connection.");}
-    setLoading(false);
+    }catch(e){setErr("Error: " + e.message);}
   };
 
   return(
