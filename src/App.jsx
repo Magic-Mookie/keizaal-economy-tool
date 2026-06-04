@@ -106,17 +106,17 @@ function LoginScreen({onLogin}){
     const u=username.trim();
     if(!u)return;
     setLoading(true);setErr("");
-   try{
-      const {data:existing, error:fetchErr}=await supabase.from("profiles").select("username,is_admin").eq("username",u).maybeSingle();
-      if(fetchErr)throw fetchErr;
+    try{
+      const {data:existing}=await supabase.from("profiles").select("username,is_admin").eq("username",u).single();
       if(existing){
         onLogin(existing);
       } else {
-        const {error:insertErr}=await supabase.from("profiles").insert({username:u,is_admin:false});
-        if(insertErr)throw insertErr;
+        const {error}=await supabase.from("profiles").insert({username:u,is_admin:false});
+        if(error)throw error;
         onLogin({username:u,is_admin:false});
       }
-    }catch(e){setErr("Error: " + e.message);}
+    }catch(e){setErr("Could not connect. Check your internet connection.");}
+    setLoading(false);
   };
 
   return(
@@ -201,7 +201,7 @@ export default function App(){
 
       <div style={S.main}>
         <div style={S.topbar}>
-          <span style={{fontSize:18,color:"#c8a951",fontWeight:"bold",letterSpacing:2}}>⚔ MOOKIE'S — ECONOMY TOOL</span>
+          <span style={{fontSize:18,color:"#c8a951",fontWeight:"bold",letterSpacing:2}}>⚔ MOOKIE'S ECONOMY TOOL</span>
           <div style={{display:"flex",alignItems:"center",gap:16}}>
             {loading&&<span style={{fontSize:12,color:"#9a8060"}}>Loading...</span>}
             <div style={{display:"flex",alignItems:"center",gap:8,fontSize:13}}>
