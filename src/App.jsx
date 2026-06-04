@@ -123,7 +123,7 @@ function LoginScreen({onLogin}){
     <div style={{display:"flex",alignItems:"center",justifyContent:"center",height:"100vh",background:"#1a1208"}}>
       <div style={{background:"#120e04",border:"1px solid #c8a951",borderRadius:8,padding:40,width:360,textAlign:"center"}}>
         <div style={{fontSize:40,marginBottom:8}}>⚔</div>
-        <div style={{fontSize:22,color:"#c8a951",letterSpacing:3,marginBottom:4}}>KEIZAAL ONLINE</div>
+        <div style={{fontSize:22,color:"#c8a951",letterSpacing:3,marginBottom:4}}>MOOKIE'S</div>
         <div style={{fontSize:12,color:"#9a8060",letterSpacing:2,marginBottom:32}}>ECONOMY TOOL</div>
         <label style={{...S.lbl,textAlign:"left"}}>Enter your username</label>
         <input style={{...S.inp,marginBottom:16,fontSize:15}} placeholder="e.g. IronForgeSmith" value={username} onChange={e=>setUsername(e.target.value)} onKeyDown={e=>e.key==="Enter"&&login()}/>
@@ -201,7 +201,7 @@ export default function App(){
 
       <div style={S.main}>
         <div style={S.topbar}>
-          <span style={{fontSize:18,color:"#c8a951",fontWeight:"bold",letterSpacing:2}}>⚔ KEIZAAL ONLINE — ECONOMY TOOL</span>
+          <span style={{fontSize:18,color:"#c8a951",fontWeight:"bold",letterSpacing:2}}>⚔ MOOKIE'S — ECONOMY TOOL</span>
           <div style={{display:"flex",alignItems:"center",gap:16}}>
             {loading&&<span style={{fontSize:12,color:"#9a8060"}}>Loading...</span>}
             <div style={{display:"flex",alignItems:"center",gap:8,fontSize:13}}>
@@ -229,7 +229,7 @@ function HomeTab({setActiveTab,user,isAdmin}){
     <div>
       <div style={{textAlign:"center",marginBottom:32}}>
         <div style={{fontSize:40,marginBottom:8}}>⚔</div>
-        <div style={{fontSize:24,color:"#c8a951",letterSpacing:3,marginBottom:4}}>KEIZAAL ONLINE</div>
+        <div style={{fontSize:24,color:"#c8a951",letterSpacing:3,marginBottom:4}}>MOOKIE'S</div>
         <div style={{fontSize:13,color:"#9a8060",letterSpacing:2}}>ECONOMY TOOL</div>
       </div>
       {isAdmin&&(
